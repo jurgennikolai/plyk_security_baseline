@@ -56,8 +56,8 @@ This one presents the property **name** which is the identifier of the change, *
 				  create: true
 				  lines:
 					- '**********************************************************'
-					- '*                                ¡COMUNICADO!                            *'
-					- '*           USO PARA TRABAJOS PROFESIONALES            *'
+					- '*                     ¡COMUNICADO!                       *'
+					- '*           USO PARA TRABAJOS PROFESIONALES              *'
 					- '**********************************************************'
 
 It presents the **name** property which is the change identifier, **path** is the file path, **create** indicates if it will be necessary to create the file in case it does not exist in the specified path (*true* > *create file* | *false* > *do not create file*) and **lines** is the property that will contain the lines that will be added in the file.
@@ -66,9 +66,10 @@ It presents the **name** property which is the change identifier, **path** is th
 `### File does not exist.`
 
 `$ cat /etc/ssh/my_banner (after)`
+
 	**********************************************************
-	*                                ¡COMUNICADO!                            *
-	*           USO PARA TRABAJOS PROFESIONALES            *
+	*                   ¡COMUNICADO!                         *
+	*         USO PARA TRABAJOS PROFESIONALES                *
 	**********************************************************
 	
 
