@@ -53,8 +53,8 @@ Este presenta la propiedad **name** el cual es el identificador del cambio, **pa
 				  create: true
 				  lines:
 					- '**********************************************************'
-					- '*                                ¡COMUNICADO!                            *'
-					- '*           USO PARA TRABAJOS PROFESIONALES            *'
+					- '*                     ¡COMUNICADO!                       *'
+					- '*           USO PARA TRABAJOS PROFESIONALES              *'
 					- '**********************************************************'
 
 Este presenta la propiedad **name** el cual es el identificador del cambio, **path** es la ruta del archivo, **create** indica si será necesario crear el archivo en caso de que no exista en la ruta especificada (*true*  > *crear archivo* | *false*  > * no crear archivo*) y **lines** es la propiedad que contendrá las lineas que serán agregadas en el archivo.
@@ -63,9 +63,10 @@ Este presenta la propiedad **name** el cual es el identificador del cambio, **pa
 `### No existe el archivo`
 
 `$ cat /etc/ssh/my_banner (antes)`
+
 	**********************************************************
-	*                                ¡COMUNICADO!                            *
-	*           USO PARA TRABAJOS PROFESIONALES            *
+	*                     ¡COMUNICADO!                       *
+	*           USO PARA TRABAJOS PROFESIONALES              *
 	**********************************************************
 	
 
