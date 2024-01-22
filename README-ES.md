@@ -130,17 +130,14 @@ Este presenta la propiedad **name** el cual es el identificador del cambio y **c
 ## Ejecución
 
 Para ejecutar el playbook  usar el siguiente comando:
-`$ ansible-playbook playbook.prd.yml -K`
+`$ ansible-playbook main.yml -K`
 
 #### Reportes
 
 Los reportes se generan en la misma ruta donde se encuentra el playbook con los nombres: 
  * file_status_lbs_report.csv
-`$ cat file_status_lbs_report.csv`
+`$ cat report/file_status_lbs_report.csv`
 
-## Nota
-
-El archivo **playbook.dev.yml** y **playbook.prd.yml** se diferencian en que la primera *(dev.)* es para desarrollo, es decir, que la lógica que genera el reporte sea entendible y pueda ser modificado con facilidad. Mientras que la segunda *(prd.)* es para ejecutar y obtener el reporte adecuado.
 
 **Esto ha sido probado con Ansible 2.10**
 **¡A usarlo! @jurgennikolai**

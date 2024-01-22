@@ -133,18 +133,15 @@ This presents the property **name** which is the identifier of the change and **
 
 To run the playbook use the following command:
 
-`$ ansible-playbook playbook.prd.yml -K`
+`$ ansible-playbook main.yml -K`
 
 #### Reports
 
 The reports are generated in the same path where the playbook with the names is located: 
 
  * file_status_lbs_report.csv
-`$ cat file_status_lbs_report.csv`
+`$ cat report/file_status_lbs_report.csv`
 
-## Note
-
-The **playbook.dev.yml** and **playbook.prd.yml** files differ in that the first *(dev.)* is for development, i.e., that the logic that generates the report is understandable and can be easily modified. While the second *(prd.)* is for executing and getting the report right.
 
 **This has been tested with Ansible 2.10**.
 **To use it! @jurgennikolai**
