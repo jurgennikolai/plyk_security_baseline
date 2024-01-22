@@ -1,0 +1,37 @@
+#Var newLine
+- name: Add a new Line in the File
+  blockinfile:
+          marker: "## {mark} ANX-MIB-743 >> {{item.name}} "
+          path: '{{item.path}}'
+          create: '{{item.create}}'
+          block: |
+                  {% for line in item.lines %}
+                  {{ line}}
+                  {% endfor %}
+
+          backup: false
+
+  ignore_unreachable: false
+  ignore_errors: true
+  register: var_newLines
+  loop: "{{var.newLine}}"
+  when: item.add is not defined
+
+#Var addLine
+- name: Add a New Line at the Specified Place in the File
+  lineinfile:
+          path: '{{item.path}}'
+          create: '{{item.create}}'
+          insertafter: '{{ (item.add == "after") | ternary( item.search , omit) }}'
+          insertbefore: '{{ (item.add == "before") | ternary( item.search , omit) }}'
+          line: "{{item.lines | join('\n')}}"
+          state: present
+          backup: false
+
+  ignore_unreachable: false
+  ignore_errors: true
+  register: var_addLines
+  loop: "{{var.newLine}}"
+  when: item.add is defined
+  
+

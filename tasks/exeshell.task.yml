@@ -1,0 +1,9 @@
+#Var exeShell
+- name: Using shell to execute commands / not sequence
+  shell:
+       "{{item.command}}"
+  ignore_unreachable: false
+  ignore_errors: true
+  register: var_exeShells
+  loop: "{{var.exeShell}}"
+

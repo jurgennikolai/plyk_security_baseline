@@ -1,0 +1,6 @@
+packages:
+  #action => absent -> remove ; present -> install; latest -> update
+  - name: "CODE-03"
+    type: "yum"
+    action: absent
+    package: "rsh-server"

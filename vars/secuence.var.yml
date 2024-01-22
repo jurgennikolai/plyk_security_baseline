@@ -1,0 +1,9 @@
+secuence:
+  - name: "CODE-05"
+    commands:
+      - 'mPATHFILE="/etc/sysctl.conf" ; mPARAM="net.ipv4.ip_forward" ; mVALUE="0" '
+      - 'grep -q "$mPARAM" $mPATHFILE || echo "$mPARAM=$mVALUE" >> $mPATHFILE ' #CASO: NO EXISTE -> AGREGADO CON VALOR REQUERIDO
+      - 'sed -i "s/#\s*$mPARAM.*/$mPARAM=$mVALUE/" $mPATHFILE ' #CASO: COMENTADO -> NO COMENTADO CON VALOR REQUERIDO
+      - 'sed -i "s/$mPARAM.*/$mPARAM=$mVALUE/" $mPATHFILE' #CASO: NO COMENTADO -> ASEGURARSE DEL VALOR REQUERIDO
+
+      - "sysctl -p"

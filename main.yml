@@ -1,0 +1,46 @@
+- name: Apply LBS on Linux
+  hosts: apitest01.network.com
+  become: true
+  tasks: 
+        - name: Including All Variables in the vars/ dir
+          delegate_to: localhost
+          include_vars:
+                  dir: vars/
+                  name: var
+
+        - name: Finding All the Tasks Files in the tasks/ dir.
+          find:
+                  paths: tasks/
+                  patterns: '*.task.yml'
+                  recurse: yes
+
+          delegate_to: localhost
+          register: tasksList
+        
+        - name: Including All Tasks in the tasks/ dir        
+          include_tasks: "{{ item.path }}"
+          loop: "{{ tasksList.files }}"
+
+        - name: Show Task Debugging
+          include_tasks: debug/tasks.debug.yml
+          when: var.conf.debug == "yes"
+
+- name: Generating Report on Localhost
+  hosts: localhost
+  become: true
+  tasks: 
+        - name: Including Conf Variable in the /vars
+          include_vars:
+                  file: vars/conf.var.yml
+                  name: var
+
+        - name: asdfa
+          debug:
+                  msg: "{{var.conf}}"
+        - name: Output - Report of Changes How .csv
+          include_tasks: outputs/tasks-dev.out.yml
+          when: var.conf.mode == "dev"
+
+        - name: Output - Report of Changes How .csv
+          include_tasks: outputs/tasks-prd.out.yml
+          when: var.conf.mode == "prd"

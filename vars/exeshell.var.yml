@@ -1,0 +1,6 @@
+exeShell:
+  - name: "CODE-06"
+    command: "systemctl stop firewalld && systemctl disable firewalld"
+
+  - name: "CODE-07"
+    command: "systemctl enable auditd && systemctl start auditd"

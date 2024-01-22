@@ -1,0 +1,12 @@
+#Var secuence
+- name: Using shell to execute commands / in sequence
+  shell: |
+          {% for a in item.commands %}
+          {{ a }}
+          {% endfor %}
+
+  ignore_unreachable: false
+  ignore_errors: true
+  register: var_secuences
+  loop: "{{var.secuence}}"
+

@@ -1,0 +1,32 @@
+- name: Show var_newLine
+  debug:
+          var: var_newLines
+
+- name: Show var_addLines
+  debug:
+          var: var_addLines
+
+- name: Show var_changeLines
+  debug:
+          var: var_changeLines
+
+- name: Show var_secuences
+  debug:
+          var: var_secuences
+
+- name: Show var_exeShells
+  debug:
+          var: var_exeShells
+
+- name: Show var_packages_yum
+  debug:
+          var: var_yum_packages
+
+- name: Show var_packages_dnf
+  debug:
+          var: var_dnf_packages
+
+- name: Show var_restricted
+  debug:
+          var: var_restricted
+

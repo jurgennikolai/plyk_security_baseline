@@ -1,0 +1,18 @@
+changeLine:
+
+    - name: 'CODE-09'
+      path: '/etc/login.defs'
+      toReplace:
+            - search: 'PASS_MIN_LEN\s*[0-9]+'
+              line: '\nPASS_MIN_LEN 6'
+              - name: 'C17'
+
+    - name: 'CODE-08'
+      path: '/etc/gshadow' 
+      toReplace:
+            - search: 'daemon::|daemon:!:'
+              line: 'daemon:*:'
+            - search: 'bin::|bin:!:'
+              line: 'bin:*:'
+            - search: 'sys::|sys:!:'
+              line: 'sys:*:' 

@@ -1,0 +1,19 @@
+restricted:
+  #GENERAL ATTRIBUTES
+  # name
+  # typeService
+  # - "pamd"
+  # - ""
+
+  - name: "CODE-04"
+    typeService: "pamd"
+    attrState: updated
+    attrName: system-auth
+    attrType: password
+    attrControl: sufficient
+    attrModule_path: pam_unix.so
+    attrModule_arguments: 'sha512
+    nullok
+    try_first_pass
+    use_authtok 
+    remember=10'

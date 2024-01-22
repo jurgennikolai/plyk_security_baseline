@@ -1,0 +1,17 @@
+#Var ChangeLine
+- name: Make Change on the Same Line
+  replace:
+          path: '{{item.0.path}}'
+          regexp: '{{item.1.search}}'
+          replace: '{{item.1.line}}'
+          backup: false
+
+  ignore_unreachable: false
+  ignore_errors: true
+  register: var_changeLines
+  with_subelements:
+          - "{{var.changeLine}}"
+          - toReplace
+
+
+       

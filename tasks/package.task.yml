@@ -1,0 +1,23 @@
+#Var packages
+- name: Using packages module yum / install / remove
+  yum: 
+        name: '{{item.package}}'
+        state: '{{item.action}}'
+
+  register: var_yum_packages
+  ignore_unreachable: false 
+  ignore_errors: true
+  loop: '{{var.packages}}'
+  when: item.type == "yum"
+
+- name: Using packages module dnf / install / remove
+  dnf: 
+        name: '{{item.package}}'
+        state: '{{item.action}}'
+
+  register: var_dnf_packages
+  ignore_unreachable: false 
+  ignore_errors: true
+  loop: '{{var.packages}}'
+  when: item.type == "dnf"
+

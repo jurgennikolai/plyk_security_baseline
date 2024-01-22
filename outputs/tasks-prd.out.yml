@@ -1,0 +1,73 @@
+ - name: Report General
+   copy:
+            dest: './report/applied_lbs_report_prd.csv'
+            content: |
+                Host, S.O, Type Action, Action Code, Path, Search Regexp, Line, Commands, Changed, Failed, Backup File, msg 
+                {% for host in groups.all %}
+                {% if hostvars[host].var_newLines is defined %}
+                {% with var_newLines=hostvars[host].var_newLines , host_data=hostvars[host] %} 
+                {% for result in var_newLines.results %}
+                {% if result.skipped is not defined %}
+                {{ host }}, {{host_data.ansible_distribution}} {{host_data.ansible_distribution_version}}, New lines, {{result.item.name}}, {{result.item.path}}, , , , {{result.changed}}, {{result.failed}}, {% if result.backup_file is defined %} {{result.backup_file}} {% endif %}, {{result.msg}}
+                {% endif %}
+                {% endfor %}
+                {% endwith %}
+                {% endif %}
+                {% if hostvars[host].var_addLines is defined %}
+                {% with var_addLines=hostvars[host].var_addLines , host_data=hostvars[host] %} 
+                {% for result in var_addLines.results %}
+                {% if result.skipped is not defined %}
+                {{ host }}, {{host_data.ansible_distribution}} {{host_data.ansible_distribution_version}}, New lines, {{result.item.name}}, {{result.item.path}}, , , , {{result.changed}}, {{result.failed}}, {% if result.backup_file is defined %} {{result.backup_file}} {% endif %}, {{result.msg}}
+                {% endif %}
+                {% endfor %}
+                {% endwith %}
+                {% endif %}
+                {% if hostvars[host].var_changeLines is defined %}
+                {% with var_changeLines=hostvars[host].var_changeLines , host_data=hostvars[host] %} 
+                {% for result in var_changeLines.results %}
+                {{ host }}, {{host_data.ansible_distribution}} {{host_data.ansible_distribution_version}}, Change Lines, {{result.item[0].name}}, {{result.item[0].path}}, {{result.item[1].search}}, {{result.item[1].line}}, , {{result.changed}}, {{result.failed}}, {% if result.backup_file is defined %} {{result.backup_file}} {% endif %}, {{result.msg}}
+                {% endfor %}
+                {% endwith %}
+                {% endif %}
+                {% if hostvars[host].var_yum_packages is defined %}
+                {% with var_packages=hostvars[host].var_yum_packages , host_data=hostvars[host] %} 
+                {% for result in var_packages.results %}
+                {% if result.skipped is not defined %}
+                {{ host }}, {{host_data.ansible_distribution}} {{host_data.ansible_distribution_version}}, {{result.item.type}} Packages, {{result.item.name}}, , , , {{result.item.type}}/{{result.item.action}}/{{result.item.package}}, {{result.changed}}, {{result.failed}}, , {{result.msg }}
+                {% endif %}
+                {% endfor %}
+                {% endwith %}
+                {% endif %}
+                {% if hostvars[host].var_dnf_packages is defined %}
+                {% with var_packages=hostvars[host].var_dnf_packages , host_data=hostvars[host] %} 
+                {% for result in var_packages.results %}
+                {% if result.skipped is not defined %}
+                {{ host }}, {{host_data.ansible_distribution}} {{host_data.ansible_distribution_version}}, {{result.item.type}} Packages, {{result.item.name}}, , , , {{result.item.type}}/{{result.item.action}}/{{result.item.package}}, {{result.changed}}, {{result.failed}}, , {{result.msg}}
+                {% endif %}
+                {% endfor %}
+                {% endwith %}
+                {% endif %}
+                {% if hostvars[host].var_exeShells is defined %}
+                {% with var_exeShells=hostvars[host].var_exeShells , host_data=hostvars[host] %} 
+                {% for result in var_exeShells.results %}
+                {{ host }}, {{host_data.ansible_distribution}} {{host_data.ansible_distribution_version}}, Exe Shells, {{result.item.name}}, , , , {{result.cmd}} , {{result.changed}}, {{result.failed}}, , {{result.stderr_lines | join(';')}}; {{result.stdout_lines | join(';')}}
+                {% endfor %}
+                {% endwith %}
+                {% endif %}
+                {% if hostvars[host].var_secuences is defined %}
+                {% with var_secuences=hostvars[host].var_secuences , host_data=hostvars[host] %} 
+                {% for result in var_secuences.results %}
+                {{ host }}, {{host_data.ansible_distribution}} {{host_data.ansible_distribution_version}}, Secuences, {{result.item.name}}, , , , {{result.item.commands[0]}} ... , {{result.changed}}, {{result.failed}}, , {{result.stderr_lines | join(';')}}
+                {% endfor %}
+                {% endwith %}
+                {% endif %}
+                {% if hostvars[host].var_restricted is defined %}
+                {% with var_restricted=hostvars[host].var_restricted , host_data=hostvars[host] %} 
+                {% for result in var_restricted.results %}
+                {% if result.skipped is not defined %}
+                {{ host }}, {{host_data.ansible_distribution}} {{host_data.ansible_distribution_version}}, Restricted, {{result.item.name}}, {{result.item.typeService}} , , , , {{result.changed}}, {{result.failed}}, , 
+                {% endif %}
+                {% endfor %}
+                {% endwith %}
+                {% endif %}
+                {% endfor %}

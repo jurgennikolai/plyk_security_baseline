@@ -1,0 +1,19 @@
+- name: Add New Lines in Pam.d Files
+  pamd:
+          name: "{{ item.attrName }}" 
+          type: "{{ item.attrType }}"
+          control: "{{ item.attrControl }}"
+          module_path: "{{ item.attrModule_path }}"
+          new_type: "{{ item.attrNew_type is not defined | ternary(omit, item.attrNew_type) }}"
+          new_control: "{{ item.attrNew_control is not defined | ternary(omit, item.attrNew_control) }}"
+          new_module_path: "{{ item.attrNew_module_path is not defined | ternary(omit, item.attrNew_module_path) }}"
+          module_arguments: "{{ item.attrModule_arguments }}"
+          state: "{{ item.attrState }}"
+
+  ignore_unreachable: false
+  ignore_errors: true
+  register: var_restricted
+  loop: "{{var.restricted}}"
+  when: item.typeService == "pamd"
+
+

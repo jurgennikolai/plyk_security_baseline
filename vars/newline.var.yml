@@ -1,0 +1,17 @@
+newLine:
+  - name: "CODE-01"
+    path: "/etc/fstab"
+    create: true
+    lines:
+      - "/tmp /var/tmp none bind 0 0" #C01
+
+  - name: "CODE-02"
+    path: "/etc/ssh/banner"
+    create: true
+    lines:
+      - "############################################################################"
+      - "#              ADVERTENCIA! ACCESO SOLO DE PERSONAL AUTORIZADO             #"
+      - "#   ADVERTENCIA!!!, ESTE SISTEMA ES SOLO PARA PERSONAL AUTORIZADO Y PARA   #"
+      - "#   TAREAS ESTRICTAMENTE LABORALES, CUALQUIER USO INADECUADO SERA SUJETO   #"
+      - "#                        A UNA ACCION DISCIPLINARIA.                       #"
+      - "############################################################################"
